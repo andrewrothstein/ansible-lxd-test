@@ -1,0 +1,11 @@
+---
+lxd_test_platforms:
+  - image: alpine/3.4/amd64
+    vm: alpine-34-amd64
+  - image: fedora/23/amd64
+    vm: fedora-23-amd64
+  - image: ubuntu/trusty/amd64
+    vm: ubuntu-trusty-amd64
+  - image: ubuntu/xenial/amd64
+    vm: ubuntu-xenial-amd64
+      

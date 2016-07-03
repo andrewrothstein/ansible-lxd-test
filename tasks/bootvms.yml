@@ -1,0 +1,6 @@
+---
+- name: boot VMs
+  become: yes
+  become_user: root
+  with_items: '{{lxd_test_platforms}}'
+  command: lxc launch images:{{item.image}} {{item.vm}}

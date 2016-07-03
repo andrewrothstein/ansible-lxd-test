@@ -1,0 +1,7 @@
+---
+- name: copy images to local lxc daemon
+  with_items: '{{lxd_test_platforms}}'
+  become: yes
+  become_user: root
+  command: >
+    lxc image copy images:{{item.image}} local:
