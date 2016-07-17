@@ -1,6 +1,15 @@
 ---
-- name: boot VMs
+- name: init VMs
   become: yes
   become_user: root
   with_items: '{{lxd_test_platforms}}'
-  command: lxc launch images:{{item.image}} {{item.vm}}
+  command: lxc init images:{{item.image}} {{item.vm}}
+
+- name: create .ssh directory
+  become: yes
+  becom_user: root
+  with_nested:
+    - '{{lxd_test_platforms}}'
+    - [ 'mkdir -p /root/.ssh', 'chmod 700 /root/.ssh' ]
+  command: lxc exec {{ item[0].vm }} -- {{ item[1] }}
+  

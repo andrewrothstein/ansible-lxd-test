@@ -8,4 +8,6 @@ lxd_test_platforms:
     vm: ubuntu-trusty-amd64
   - image: ubuntu/xenial/amd64
     vm: ubuntu-xenial-amd64
+  - image: centos/7/amd64
+    vm: centos-7-amd
       
