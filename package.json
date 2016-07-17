@@ -1,0 +1,26 @@
+{
+  "name": "lxd-test-hosts",
+  "version": "1.0.0",
+  "description": "Role Name =========",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewrothstein/ansible-lxd-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewrothstein/ansible-lxd-test/issues"
+  },
+  "homepage": "https://github.com/andrewrothstein/ansible-lxd-test#readme",
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "node-lxd": "^0.2.8"
+  }
+}
