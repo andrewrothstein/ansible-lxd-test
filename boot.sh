@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-set +x
+set -x
 
 function launch {
     IMAGE=$1
     VM=$2
+    echo launching $IMAGE as $VM...
     lxc launch images:$IMAGE $VM
 }
 
@@ -34,14 +35,16 @@ function launch_sshd {
 function install_sshd {
     PKG=$1
     VM=$2
-    lxc exec $VM -- bash -l -c "$PKG update -y | tee"
-    lxc exec $VM -- bash -l -c "$PKG upgrade -y | tee"
-    lxc exec $VM -- bash -l -c "$PKG install -y openssh-server | tee"
+    lxc exec $VM --mode=non-interactive -- bash -l -c "$PKG update -y | tee"
+    lxc exec $VM --mode=non-interactive -- bash -l -c "$PKG upgrade -y | tee"
+    lxc exec $VM --mode=non-interactive -- bash -l -c "$PKG install -y openssh-server | tee"
+    lxc exec $VM --mode=non-interactive -- bash -l -c 'echo -e "linuxpassword\nlinuxpassword" | passwd root'
 }
 
 function boot {
     IMAGE=$1
     VM=$2
+    echo booting $IMAGE as $VM...
     launch $IMAGE $VM
     key $VM
 }
@@ -54,22 +57,12 @@ function configure {
     launch_sshd $INIT $VM
 }
 
-function launch {
-    IMAGE=$1
-    VM=$2
-    PKG=$4
-    INIT=$5
-    boot $IMAGE $VM
-    sleep 5
-    configure $VM $PKG $INIT
-}
-
 function launch_all {
+    echo booting...
     boot ubuntu/trusty/amd64 ubuntu-trusty-amd64
     boot ubuntu/xenial/amd64 ubuntu-xenial-amd64
     boot fedora/23/amd64 fedora-23-amd64
     boot centos/7/amd64 centos-7-amd64
-    sleep 5
     configure ubuntu-trusty-amd64 apt service
     configure ubuntu-xenial-amd64 apt systemd
     configure fedora-23-amd64 dnf systemd
