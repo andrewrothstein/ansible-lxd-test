@@ -1,0 +1,23 @@
+---
+- src: andrewrothstein.useful-groups
+  version: v1.0.1
+- src: andrewrothstein.proxify
+  version: v1.0.10
+- src: andrewrothstein.sudoers
+  version: v1.0.1
+- src: andrewrothstein.git
+  version: v1.0.2
+- src: andrewrothstein.go
+  version: v1.0.0
+- src: andrewrothstein.emacs
+  version: v1.0.1
+- src: andrewrothstein.galaxify
+  version: v1.0.0
+- src: andrewrothstein.hub
+  verison: v1.0.0
+- src: andrewrothstein.nettools
+  version: v1.0.2
+- src: andrewrothstein.docker
+  version: v3.0.3
+
+

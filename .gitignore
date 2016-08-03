@@ -1,3 +1,4 @@
 **~
 *.retry
 node_modules/
+.ansible-roles/

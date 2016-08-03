@@ -11,6 +11,7 @@ function del_all {
     del ubuntu-xenial-amd64
     del fedora-23-amd64;
     del centos-7-amd64;
+    del debian-jessie-amd64
 }
 
 del_all

@@ -1,0 +1,13 @@
+- hosts: lxd
+  roles:
+    - andrewrothstein.useful-groups
+    - andrewrothstein.proxify
+    - andrewrothstein.sudoers
+    - andrewrothstein.git
+    - andrewrothstein.go
+    - andrewrothstein.emacs
+    - andrewrothstein.galaxify
+    - andrewrothstein.hub
+    - andrewrothstein.nettools
+    - andrewrothstein.docker
+
