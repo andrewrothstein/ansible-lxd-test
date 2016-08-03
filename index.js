@@ -1,6 +1,7 @@
 var _ = require("lodash");
 var lxd = require("node-lxd");
-var client = lxd();
+var Promise = require("promise");
+var fs = require("fs");
 
 let container_specs = [
     {
@@ -22,13 +23,33 @@ let container_specs = [
 ];
 
 _.each(container_specs, function(spec) {
-    console.log("booting container from image " + spec.image + " as " + spec.name);
-})
-
-client.containers(function(err, containers) {
-    for (var i = 0; i < containers.length; i++) {
-	let c = containers[i];
-	console.log(c.name() + " : " + c.ipv4()); // containers are actual objects
-    }
+    console.log("not booting container from image " + spec.image + " as " + spec.name);
 });
 
+function listContainers(client) {
+    return new Promise(function(resolve, reject) {
+	client.containers(function(err, containers) {
+	    if (err != null) return reject(err);
+	    resolve(containers);
+	})
+    });
+}
+
+function hostsSection(cd) {
+    return _.map(cd.done(), function(c){ return c.ipv});
+}
+
+
+
+function main(args) {
+    var client = lxd();
+    cd = listContainers(client).then(function(containers) {
+	return _.map(containers, function(c) {
+	    return { name : c.name(), ipv4 : c.ipv4() };
+	});
+    });
+    let hostssection = hostsSection(cd);
+    console.log(hostssection);
+}
+
+main(["arg1"]);

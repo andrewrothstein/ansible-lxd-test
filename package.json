@@ -21,6 +21,7 @@
   "homepage": "https://github.com/andrewrothstein/ansible-lxd-test#readme",
   "dependencies": {
     "lodash": "^4.13.1",
-    "node-lxd": "^0.2.8"
+    "node-lxd": "^0.2.8",
+    "promise": "^7.1.1"
   }
 }
